@@ -16,19 +16,6 @@
 
 ---
 
-## Daftar Isi
-
-- [Tentang Proyek](#tentang-proyek)
-- [Tampilan Aplikasi](#tampilan-aplikasi)
-- [Fitur Utama](#fitur-utama)
-- [Teknologi yang Digunakan](#teknologi-yang-digunakan)
-- [Arsitektur Sistem](#arsitektur-sistem)
-- [Cara Menjalankan](#cara-menjalankan)
-- [Struktur Folder](#struktur-folder)
-- [Tim Pengembang](#tim-pengembang)
-
----
-
 ## Tentang Proyek
 
 **MoodTune** adalah sistem rekomendasi musik adaptif yang mendeteksi emosi pengguna secara real-time melalui kamera, lalu merekomendasikan lagu yang sesuai dengan suasana hati tersebut.
