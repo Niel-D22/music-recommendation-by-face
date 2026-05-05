@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { RiMusic2Line, RiLoaderLine } from "react-icons/ri";
 
 export default function Player({ song }) {
   const [videoId, setVideoId] = useState(null);
@@ -17,52 +18,56 @@ export default function Player({ song }) {
 
   if (!song) return null;
 
-  return (
-    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 p-5 text-white shadow-lg">
-      <div className="absolute -top-6 -right-6 w-28 h-28 rounded-full bg-white/10" />
-      <div className="absolute -bottom-8 -left-4 w-36 h-36 rounded-full bg-white/5" />
+  const matchPct = (song.score * 100).toFixed(0);
 
-      <div className="relative space-y-4">
-        <p className="text-xs font-medium text-brand-100 uppercase tracking-widest">
+  return (
+    <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden shadow-sm">
+      {/* Header info */}
+      <div className="px-5 py-4 border-b border-zinc-100 dark:border-zinc-800">
+        <p className="text-[11px] uppercase tracking-widest text-zinc-400 font-medium mb-3">
           Sedang Diputar
         </p>
-
         <div className="flex items-center gap-3">
-          <div className="shrink-0 w-12 h-12 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center text-2xl">
-            🎵
+          <div className="shrink-0 w-11 h-11 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
+            <RiMusic2Line size={20} className="text-zinc-500 dark:text-zinc-400" />
           </div>
-          <div className="min-w-0">
-            <p className="font-bold text-base truncate">{song.name}</p>
-            <p className="text-sm text-brand-100 truncate">{song.artist}</p>
+          <div className="min-w-0 flex-1">
+            <p className="font-semibold text-[14.5px] text-zinc-900 dark:text-white truncate">
+              {song.name}
+            </p>
+            <p className="text-sm text-zinc-400 truncate">{song.artist}</p>
+          </div>
+          <div className="shrink-0 text-right">
+            <p className="text-xs font-mono font-semibold text-zinc-700 dark:text-zinc-300">
+              {matchPct}%
+            </p>
+            <p className="text-[10px] text-zinc-400">cocok</p>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          <div className="flex-1 h-1.5 rounded-full bg-white/20">
-            <div
-              className="h-1.5 rounded-full bg-white transition-all duration-500"
-              style={{ width: `${(song.score * 100).toFixed(0)}%` }}
-            />
-          </div>
-          <span className="text-xs font-mono text-brand-100">
-            {(song.score * 100).toFixed(0)}% cocok
-          </span>
+        {/* Match progress bar */}
+        <div className="mt-4 h-1 rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
+          <div
+            className="h-full rounded-full bg-zinc-900 dark:bg-white transition-all duration-700"
+            style={{ width: `${matchPct}%` }}
+          />
         </div>
+      </div>
 
-        {/* YouTube Embed */}
+      {/* YouTube embed */}
+      <div className="aspect-video w-full bg-zinc-950">
         {videoId ? (
-          <div className="rounded-xl overflow-hidden aspect-video w-full">
-            <iframe
-              key={videoId}
-              src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-              className="w-full h-full"
-            />
-          </div>
+          <iframe
+            key={videoId}
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+            className="w-full h-full"
+          />
         ) : (
-          <div className="rounded-xl bg-white/10 aspect-video w-full flex items-center justify-center text-sm text-brand-100">
-            Memuat video...
+          <div className="w-full h-full flex flex-col items-center justify-center gap-2.5">
+            <RiLoaderLine size={22} className="animate-spin text-zinc-500" />
+            <p className="text-xs text-zinc-500">Memuat video...</p>
           </div>
         )}
       </div>
@@ -74,7 +79,7 @@ export default function Player({ song }) {
 async function fetchYoutubeId(trackName, artist) {
   try {
     const res = await fetch(
-      `/youtube-id?q=${encodeURIComponent(trackName + " " + artist)}`,
+      `/youtube-id?q=${encodeURIComponent(trackName + " " + artist)}`
     );
     const data = await res.json();
     return data.videoId ?? null;

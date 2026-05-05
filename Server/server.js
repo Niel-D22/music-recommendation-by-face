@@ -3,15 +3,13 @@ const cors = require("cors");
 const fs = require("fs");
 const { parse } = require("csv-parse/sync");
 const { recommend } = require("./recommender");
-
+require("dotenv").config();
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 // ── Token Spotify (ganti jika expired) ──
-const SPOTIFY_TOKEN =
-  "BQAwoBSS5_FrmVECM5vNfjyJD0DXotkhc5ki0jSp19UIGaoKIKCzOd77qJ1HLW3QdhqENlIFX_uKRQeJBO1KduNKodatxSAK39QYDCxJV1CEHmR3YZDIb82cvT78_70hipuewi0QbZXNIO_aedJN6uYGOUxNySGzLOAwcdl4vQJa60MBxAtZ0c29H3cVh0-DVeBoF7ZRlmq7BJz8LfF_mWQSoUTA5sbz6b2YyPhtD3LL8FIi-EAfAIXFISecUKgiNH-VuZ2_N2q48Mk-GEX_8geu-9DSUTRb4qezrZ148ssgF4DABENYcyjxeh3UpPIHBNUq6w";
-
+const SPOTIFY_TOKEN = process.env.SPOTIFY_ACCESS_TOKEN;
 // ── Search preview_url dari Spotify ──
 async function getPreviewUrl(trackName, artistName) {
   try {

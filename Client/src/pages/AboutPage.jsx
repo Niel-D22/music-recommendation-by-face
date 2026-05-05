@@ -1,3 +1,5 @@
+import { RiCodeSSlashLine, RiTeamLine } from "react-icons/ri";
+
 const team = [
   { name: "Ahmad R. Wael", nim: "24013033" },
   { name: "Daniel R. Warouw", nim: "24013025" },
@@ -18,54 +20,73 @@ const stack = [
 
 export default function AboutPage() {
   return (
-    <div className="max-w-3xl mx-auto px-6 py-16 space-y-14">
+    <div className="max-w-3xl mx-auto px-6 py-14 space-y-12">
       {/* Tentang proyek */}
-      <section className="space-y-4">
-        <h1 className="text-3xl font-bold">Tentang Proyek</h1>
-        <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">
-          MoodTune adalah sistem rekomendasi musik adaptif berbasis pengenalan
-          emosi real-time yang dibangun untuk membantu mahasiswa dalam manajemen
-          stres selama kegiatan belajar. Sistem mendeteksi ekspresi wajah
-          menggunakan Face-API.js dan merekomendasikan lagu yang sesuai
-          menggunakan algoritma Cosine Similarity terhadap dataset Spotify.
+      <section>
+        <div className="inline-flex items-center gap-2 text-[11.5px] uppercase tracking-widest text-zinc-400 font-medium mb-4">
+          <span className="w-4 h-px bg-zinc-300 dark:bg-zinc-700" />
+          Tentang Proyek
+        </div>
+        <h1 className="text-3xl font-bold text-zinc-900 dark:text-white mb-4 leading-snug">
+          MoodTune
+        </h1>
+        <p className="text-zinc-500 dark:text-zinc-400 leading-[1.75] text-[15px]">
+          Sistem rekomendasi musik adaptif berbasis pengenalan emosi real-time
+          yang dibangun untuk membantu mahasiswa dalam manajemen stres selama
+          kegiatan belajar. Sistem mendeteksi ekspresi wajah menggunakan
+          Face-API.js dan merekomendasikan lagu yang sesuai menggunakan
+          algoritma Cosine Similarity terhadap dataset Spotify.
         </p>
       </section>
 
       {/* Tech stack */}
-      <section className="space-y-4">
-        <h2 className="text-xl font-bold">Teknologi yang Digunakan</h2>
-        <div className="card divide-y divide-zinc-100 dark:divide-zinc-800">
-          {stack.map((s) => (
+      <section>
+        <div className="flex items-center gap-2 mb-5">
+          <RiCodeSSlashLine size={16} className="text-zinc-400" />
+          <h2 className="text-sm font-semibold text-zinc-600 dark:text-zinc-300 uppercase tracking-wide">
+            Teknologi yang Digunakan
+          </h2>
+        </div>
+        <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden shadow-sm divide-y divide-zinc-100 dark:divide-zinc-800">
+          {stack.map((s, i) => (
             <div
               key={s.label}
-              className="flex items-center justify-between px-5 py-3.5"
+              className="flex items-center justify-between px-5 py-3.5 group hover:bg-zinc-50 dark:hover:bg-zinc-800/40 transition-colors"
             >
-              <span className="text-sm text-zinc-500 dark:text-zinc-400">
-                {s.label}
+              <span className="text-sm text-zinc-400">{s.label}</span>
+              <span className="text-sm font-medium text-zinc-800 dark:text-zinc-200 font-mono">
+                {s.value}
               </span>
-              <span className="text-sm font-medium">{s.value}</span>
             </div>
           ))}
         </div>
       </section>
 
       {/* Tim */}
-      <section className="space-y-4">
-        <h2 className="text-xl font-bold">Tim Pengembang</h2>
-        <p className="text-sm text-zinc-400">
-          Fakultas Teknik — Program Studi Teknik Informatika
-          <br />
-          Universitas Katolik De La Salle Manado, 2026
+      <section>
+        <div className="flex items-center gap-2 mb-2">
+          <RiTeamLine size={16} className="text-zinc-400" />
+          <h2 className="text-sm font-semibold text-zinc-600 dark:text-zinc-300 uppercase tracking-wide">
+            Tim Pengembang
+          </h2>
+        </div>
+        <p className="text-[13px] text-zinc-400 mb-5">
+          Teknik Informatika — Universitas Katolik De La Salle Manado, 2026
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {team.map((m, i) => (
-            <div key={m.nim} className="card px-5 py-4 flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full bg-brand-100 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 flex items-center justify-center text-sm font-bold shrink-0">
+            <div
+              key={m.nim}
+              className="flex items-center gap-3.5 px-4 py-3.5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all shadow-sm"
+            >
+              <div className="shrink-0 w-9 h-9 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-xs font-bold text-zinc-500 dark:text-zinc-400">
                 {i + 1}
               </div>
-              <div>
-                <p className="text-sm font-medium">{m.name}</p>
-                <p className="text-xs text-zinc-400 font-mono">{m.nim}</p>
+              <div className="min-w-0">
+                <p className="text-[13.5px] font-medium text-zinc-900 dark:text-white truncate">
+                  {m.name}
+                </p>
+                <p className="text-[11px] text-zinc-400 font-mono">{m.nim}</p>
               </div>
             </div>
           ))}
