@@ -1,8 +1,6 @@
 <div align="center">
 
-<img src="public/logo.png" alt="MoodTune Logo" width="64" height="64" />
-
-# MoodTune
+<img src="docs/Logo.png" alt="MoodTune Logo" width="400" height="400" />
 
 **Sistem rekomendasi musik adaptif berbasis pengenalan emosi real-time**
 
