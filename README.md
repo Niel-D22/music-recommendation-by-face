@@ -30,24 +30,17 @@ Seluruh proses deteksi wajah berjalan **langsung di browser pengguna** tanpa men
 
 ### Halaman Beranda
 
-> Taruh screenshot halaman beranda di sini.
-> Simpan file gambar ke folder `docs/screenshots/` lalu ganti path di bawah ini.
-
 ![Landing Page](docs/landing-page.png)
 
 ---
 
 ### Halaman Deteksi Emosi (App)
 
-> Taruh screenshot halaman utama aplikasi deteksi emosi di sini.
-
 ![App Page](docs/app-page.png)
 
 ---
 
 ### Halaman Tentang
-
-> Taruh screenshot halaman tentang tim di sini.
 
 ![About Page](docs/about-page.png)
 
